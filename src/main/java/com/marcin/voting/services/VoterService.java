@@ -36,4 +36,8 @@ public class VoterService {
                 () -> new JPAObjectNotFoundException("id", String.valueOf(id)));
     }
 
+    public Voter getOneByVouteId(String vouteId){
+        return voterRepository.findVoterByVoteId(vouteId).orElseThrow(
+                () -> new JPAObjectNotFoundException("voute_id", vouteId));
+    }
 }

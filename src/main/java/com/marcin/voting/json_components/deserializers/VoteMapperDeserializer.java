@@ -28,7 +28,7 @@ public class VoteMapperDeserializer extends StdDeserializer<VoteMapper> {
         if(voterId == null){
             throw new InvalidOperationException("voter_id is required");
         }
-        vote.setVoter_id(voterId.asLong());
+        vote.setVoter_id(voterId.asText());
 
         JsonNode projectId = node.get("project_id");
         if(projectId == null){

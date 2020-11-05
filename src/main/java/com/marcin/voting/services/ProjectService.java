@@ -46,7 +46,7 @@ public class ProjectService {
         }else if(order.equals("Desc")){
             return projectRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
         }else{
-            throw new InvalidOperationException(String.format("There is no order %s", order));
+            throw new InvalidOperationException(String.format("There is no order %s, (only Asc and Desc)", order));
         }
     }
 }

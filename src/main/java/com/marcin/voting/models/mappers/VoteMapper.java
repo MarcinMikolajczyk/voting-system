@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor @Data
 @JsonDeserialize(using = VoteMapperDeserializer.class)
 public class VoteMapper {
-    private Long voter_id;
+    private String voter_id;
     private Long project_id;
     private boolean vote;
 }
