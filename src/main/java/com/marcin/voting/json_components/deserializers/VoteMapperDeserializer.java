@@ -25,22 +25,22 @@ public class VoteMapperDeserializer extends StdDeserializer<VoteMapper> {
         VoteMapper vote = new VoteMapper();
 
         JsonNode voterId = node.get("voter_id");
-        if(voterId.isNull()){
+        if(voterId == null){
             throw new InvalidOperationException("voter_id is required");
         }
         vote.setVoter_id(voterId.asLong());
 
         JsonNode projectId = node.get("project_id");
-        if(voterId.isNull()){
+        if(projectId == null){
             throw new InvalidOperationException("project_id is required");
         }
         vote.setProject_id(projectId.asLong());
 
         JsonNode voteFor = node.get("vote");
-        if(voterId.isNull()){
+        if(voterId == null){
             throw new InvalidOperationException("vote is required");
         }
-        vote.setVote(projectId.asBoolean());
+        vote.setVote(voteFor.asBoolean());
 
         return vote;
     }

@@ -9,5 +9,4 @@ public interface VoterRepository extends JpaRepository<Voter, Long> {
     boolean existsByFirstName(String firstName);
     boolean existsByLastName(String lastNmae);
     boolean existsByVoteId(String id);
-
 }

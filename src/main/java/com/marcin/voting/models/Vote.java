@@ -7,8 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Votes")
-@NoArgsConstructor
-@Data
+@NoArgsConstructor @Data
 public class Vote {
 
     @Id
