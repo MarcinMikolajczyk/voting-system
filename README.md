@@ -1,23 +1,23 @@
 # voting system
 
-#Głosujący
+# Głosujący
 
-###GET
+### GET
 
 - `/voters` - zwraca listę użytkowników uprawnionych do głosowania
 
-#Projekty
+# Projekty
 
-###GET
+### GET
 - `/projects` - zwraca listę projektów na które możemy oddać głos
 - `/projects/details/{id}` - zwraca informacje o projekcie z podanym id. Ilośc oddanych głosów za i przeciw, nazwę, opis oraz informację czy możemy oddać na niego głos
 
-###PUT
+PUT
 - `/projects/votable/{id}?can_vote=` - ustawia możliwość oddania głosu na projekt z podanym id. Za parametr can_vote ustawamy (true lub false)
 
-#Głosowanie
+# Głosowanie
 
-###POST
+### POST
 
 Aby oddać głos na wybrany projekt wysyłamy JSON:
 
