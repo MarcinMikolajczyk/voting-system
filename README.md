@@ -31,3 +31,4 @@ Aby oddać głos na wybrany projekt wysyłamy JSON:
 pod adress:
 
 - `/votes`
+
