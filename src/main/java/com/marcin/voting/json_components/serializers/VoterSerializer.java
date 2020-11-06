@@ -23,7 +23,7 @@ public class VoterSerializer extends StdSerializer<Voter> {
 
         jsonGenerator.writeStringField("firstName", voter.getFirstName());
         jsonGenerator.writeStringField("lastName", voter.getLastName());
-        jsonGenerator.writeStringField("vote_id", voter.getVoteId());
+        jsonGenerator.writeStringField("voter_id", voter.getVoteId());
 
 
         jsonGenerator.writeEndObject();
