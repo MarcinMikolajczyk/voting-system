@@ -9,10 +9,10 @@
 ## Projekty
 
 ### GET
-- `/projects` - zwraca listę projektów na które możemy oddać głos, może choć nie musi przyjmować parametr `order` który przyjmuje wartości (Asc lub Desc)
+- `/projects` - zwraca posortowaną (domyślnie Asc) listę projektów na które możemy oddać głos, może choć nie musi przyjmować parametr `order` który przyjmuje wartości (Asc lub Desc).
 - `/projects/details/{id}` - zwraca informacje o projekcie z podanym id. Ilośc oddanych głosów za i przeciw, nazwę, opis oraz informację czy możemy oddać na niego głos
 
-PUT
+### PUT
 - `/projects/votable/{id}?can_vote=` - ustawia możliwość oddania głosu na projekt z podanym id. Za parametr can_vote ustawamy (true lub false)
 
 ## Głosowanie
