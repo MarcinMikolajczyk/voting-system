@@ -1,13 +1,13 @@
 package com.marcin.voting.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Votes")
-@NoArgsConstructor @Data
+@NoArgsConstructor
+@Getter @Setter
 public class Vote {
 
     @Id
@@ -23,5 +23,25 @@ public class Vote {
 
     @Column(name = "VOTE_FOR")
     private boolean voteFor;
+
+    @Override
+    public int hashCode() {
+        return 11;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Vote other = (Vote) obj;
+        return (id != null && id.equals(other.getId()));
+    }
 
 }

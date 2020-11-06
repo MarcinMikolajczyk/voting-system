@@ -3,8 +3,7 @@ package com.marcin.voting.models;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.marcin.voting.json_components.serializers.ProjectSerializer;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,7 +11,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Projects")
-@NoArgsConstructor @Data
+@NoArgsConstructor
+@Getter @Setter
 @JsonSerialize(using = ProjectSerializer.class)
 public class Project {
 
@@ -35,4 +35,25 @@ public class Project {
         this.description = description;
         votable = true;
     }
+
+    @Override
+    public int hashCode() {
+        return 14;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Project other = (Project) obj;
+        return (id != null && id.equals(other.getId()));
+    }
+
 }

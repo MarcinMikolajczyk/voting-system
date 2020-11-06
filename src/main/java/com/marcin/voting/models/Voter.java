@@ -3,7 +3,9 @@ package com.marcin.voting.models;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.marcin.voting.json_components.serializers.VoterSerializer;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,7 +13,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Voters")
-@NoArgsConstructor @Data
+@NoArgsConstructor
+@Getter @Setter
 @JsonSerialize(using = VoterSerializer.class)
 public class Voter {
 

@@ -25,8 +25,8 @@ public class VoteService {
     public Vote save(Vote vote){
         if(voteRepository.existsByProject(vote.getProject()) &&
             voteRepository.existsByVoter(vote.getVoter())){
-            throw new InvalidOperationException(String.format("Voter with id %d already voted on project with id %d",
-                    vote.getVoter().getId(), vote.getProject().getId()));
+            throw new InvalidOperationException(String.format("Voter with id %s already voted on project with id %d",
+                    vote.getVoter().getVoteId(), vote.getProject().getId()));
         }
         return voteRepository.save(vote);
     }
@@ -36,6 +36,11 @@ public class VoteService {
         vote.setVoteFor(voteMapper.isVote());
         vote.setVoter(voterService.getOneByVouteId(voteMapper.getVoter_id()));
         vote.setProject(projectService.getOne(voteMapper.getProject_id()));
+
+        if(!vote.getProject().isVotable()) {
+            throw new InvalidOperationException("You cannot vote for this project. Voting is disable");
+        }
+
         return save(vote);
     }
 }
