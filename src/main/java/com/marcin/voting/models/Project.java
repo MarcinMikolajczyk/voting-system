@@ -7,7 +7,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Projects")
@@ -30,6 +32,8 @@ public class Project {
     @Column(name = "VOTABLE")
     private boolean votable;
 
+    private String uuid = UUID.randomUUID().toString();
+
     public Project(String name, String description) {
         this.name = name;
         this.description = description;
@@ -37,23 +41,13 @@ public class Project {
     }
 
     @Override
-    public int hashCode() {
-        return 14;
+    public boolean equals(Object o) {
+       return this == o || o instanceof Project
+               && Objects.equals(uuid, ((Project) o).uuid);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Project other = (Project) obj;
-        return (id != null && id.equals(other.getId()));
+    public int hashCode() {
+        return Objects.hash(uuid);
     }
-
 }

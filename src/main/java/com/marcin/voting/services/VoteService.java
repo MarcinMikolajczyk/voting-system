@@ -7,8 +7,10 @@ import com.marcin.voting.models.mappers.VoteMapper;
 import com.marcin.voting.repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class VoteService {
 
     private final VoteRepository voteRepository;
