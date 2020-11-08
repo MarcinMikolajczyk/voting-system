@@ -13,6 +13,8 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     boolean existsByName(String name);
 
-    @Query(value = "select p from Project p where p.id = :id")
+
+   // @Query(value = "select p from Project p where p.id = :id ")
+    @Query(value = "select p from Project p left join fetch p.votes where p.id = :id ")
     Optional<Project> findProjectWithAllVotes(@Param("id") Long id);
 }
