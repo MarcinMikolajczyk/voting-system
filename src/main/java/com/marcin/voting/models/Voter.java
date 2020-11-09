@@ -18,12 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter @Setter
 @JsonSerialize(using = VoterSerializer.class)
-public class Voter {
+public class Voter extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
 
     @Column(name = "FIRST_NAME", length = 16)
     private String firstName;
@@ -37,8 +33,6 @@ public class Voter {
     @OneToMany(mappedBy = "voter")
     private Set<Vote> votes = new HashSet<>();
 
-    private String uuid = UUID.randomUUID().toString();
-
     public Voter(String firstName, String lastName, String voteId) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,13 +40,22 @@ public class Voter {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return this == o || o instanceof Voter
-                && Objects.equals(uuid, ((Voter) o).uuid);
+    public int hashCode() {
+        return 17;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Voter other = (Voter) obj;
+        return (id != null && id.equals(other.getId()));
     }
 }

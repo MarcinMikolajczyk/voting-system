@@ -9,12 +9,8 @@ import java.util.UUID;
 @Table(name = "Votes")
 @NoArgsConstructor
 @Getter @Setter
-public class Vote {
+public class Vote extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
     @ManyToOne
     private Voter voter;
     @ManyToOne
@@ -22,17 +18,25 @@ public class Vote {
     @Column(name = "VOTE_FOR")
     private boolean voteFor;
 
-    private String uuid = UUID.randomUUID().toString();
-
-    @Override
-    public boolean equals(Object o) {
-        return this == o || o instanceof Vote
-                && Objects.equals(uuid, ((Vote) o).uuid);
-    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid);
+        return 12;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Vote other = (Vote) obj;
+        return (id != null && id.equals(other.getId()));
     }
 
 }

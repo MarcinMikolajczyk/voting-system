@@ -16,12 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter @Setter
 @JsonSerialize(using = ProjectSerializer.class)
-public class Project {
+public class Project extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
     @Column(name = "VOTES")
     @OneToMany(mappedBy = "project")
     private Set<Vote> votes = new HashSet<>();
@@ -32,7 +28,6 @@ public class Project {
     @Column(name = "VOTABLE")
     private boolean votable;
 
-    private String uuid = UUID.randomUUID().toString();
 
     public Project(String name, String description) {
         this.name = name;
@@ -41,13 +36,22 @@ public class Project {
     }
 
     @Override
-    public boolean equals(Object o) {
-       return this == o || o instanceof Project
-               && Objects.equals(uuid, ((Project) o).uuid);
+    public int hashCode() {
+        return 11;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Project other = (Project) obj;
+        return (id != null && id.equals(other.getId()));
     }
 }
